@@ -46,4 +46,35 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("theme", newTheme);
     });
   }
+
+  // ======= MOVIE CAROUSEL =======
+  const rows = document.querySelectorAll(".movie-row");
+  rows.forEach((row) => {
+    const container = row.querySelector(".movie-thumbnails");
+    if (!container) return;
+    const left = row.querySelector(".arrow-left");
+    const right = row.querySelector(".arrow-right");
+
+    // Clone thumbnails for seamless looping
+    const images = Array.from(container.children);
+    images.forEach((img) => {
+      container.appendChild(img.cloneNode(true));
+    });
+
+    const scrollStep = images[0]?.offsetWidth + 15 || 200;
+
+    right?.addEventListener("click", () => {
+      if (container.scrollLeft >= container.scrollWidth / 2) {
+        container.scrollLeft = 0;
+      }
+      container.scrollBy({ left: scrollStep, behavior: "smooth" });
+    });
+
+    left?.addEventListener("click", () => {
+      if (container.scrollLeft <= 0) {
+        container.scrollLeft = container.scrollWidth / 2;
+      }
+      container.scrollBy({ left: -scrollStep, behavior: "smooth" });
+    });
+  });
 });

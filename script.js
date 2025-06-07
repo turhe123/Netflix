@@ -1,10 +1,15 @@
-// If on home page and not logged in, redirect to login
-if (window.location.pathname.includes("index.html") && localStorage.getItem("loggedIn") !== "true") {
+// Redirect to login.html if not logged in and trying to access index.html
+if (
+  window.location.pathname.includes("index.html") &&
+  localStorage.getItem("loggedIn") !== "true"
+) {
   window.location.href = "login.html";
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  // ======= LOGIN HANDLING =======
   const form = document.getElementById("login-form");
+
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -12,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const password = document.getElementById("password").value.trim();
 
       if (username && password) {
-        // Simulate successful login
+        // Save login state and redirect
         localStorage.setItem("loggedIn", "true");
         window.location.href = "index.html";
       } else {
@@ -20,11 +25,25 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-  const themeBtn = document.getElementById("theme-toggle");
-if (themeBtn) {
-  themeBtn.addEventListener("click", () => {
-    document.body.classList.toggle("light");
-  });
-}
 
+  // ======= THEME TOGGLER =======
+
+  // Apply saved theme on load
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "light") {
+    document.body.classList.add("light");
+  }
+
+  // Handle theme toggle button
+  const themeBtn = document.getElementById("theme-toggle");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", () => {
+      // Toggle theme class
+      document.body.classList.toggle("light");
+
+      // Save new preference
+      const newTheme = document.body.classList.contains("light") ? "light" : "dark";
+      localStorage.setItem("theme", newTheme);
+    });
+  }
 });

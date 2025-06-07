@@ -1,0 +1,231 @@
+/* ========== Base Styles ========== */
+body {
+  background-color: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+/* Light Theme Overrides */
+body.light {
+  background-color: #f9f9f9;
+  color: #111;
+}
+
+/* ========== Logo ========== */
+.logo {
+  width: 280px;
+  max-width: 90vw;
+  margin-bottom: 30px;
+}
+@media (max-width: 500px) {
+  .logo {
+    width: 70vw;
+  }
+}
+
+
+/* ========== Theme Toggle Button ========== */
+#theme-toggle {
+  background-color: #e50914;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.3s ease;
+  margin-left: 20px; /* space between nav and button */
+}
+#theme-toggle:hover {
+  background-color: #b00610;
+  transform: scale(1.05);
+}
+
+/* ========== Login Page Layout ========== */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* ========== Form Styling ========== */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  transition: background-color 0.4s, border-color 0.4s;
+}
+input, button {
+  padding: 12px;
+  font-size: 1rem;
+  width: 250px;
+  border-radius: 4px;
+  border: none;
+}
+form input[type="submit"],
+body.light form input[type="submit"] {
+  background-color: #e50914 !important;
+  color: white !important;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+form input[type="submit"]:hover {
+  background-color: #b00710 !important;
+}
+
+/* Light Theme Form Inputs */
+body.light input,
+body.light select,
+body.light textarea {
+  background-color: #ddd;
+  color: #111;
+  border: none;
+}
+body.light .link-button {
+  color: #111;
+}
+body.light .link-button:hover {
+  color: #e50914;
+}
+
+/* ========== Link-Style Buttons (e.g., forgot password) ========== */
+.link-button {
+  background: none;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.95rem;
+  padding: 0;
+  line-height: 1;
+  width: auto;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: color 0.2s;
+}
+.link-button:hover,
+.link-button:focus {
+  outline: none;
+  color: #fff;
+}
+
+/* ========== Header ========== */
+header {
+    width: calc(100% - 50px); /* full width minus 10px */
+  position: fixed;
+  top: 0;
+  
+  background-color: #141414;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  padding: 20px 40px;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  gap: 40px;
+}
+
+body.light header {
+  background-color: #fff;
+  color: #111;
+}
+/* New */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  
+}
+
+/* New */
+.header-right {
+  display: flex;
+  align-items: center;
+  margin-left: auto; 
+}
+
+header .logo {
+  width: 200px;
+  margin: 0;
+}
+
+/* ========== Navigation ========== */
+header nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 15px;
+  padding-left: 20px;
+  margin: 0;
+}
+header nav ul li {
+  min-width: 0;
+  flex-shrink: 1;
+}
+
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+header nav ul li a:hover {
+  color: #e50914;
+}
+body.light header nav ul li a {
+  color: #111;
+}
+body.light header nav ul li a:hover {
+  color: #e50914;
+}
+
+/* ========== Main Layout Adjustments ========== */
+main {
+  margin-top: 120px; /* Room for fixed header */
+}
+
+/* ========== Banner Section ========== */
+.banner {
+  background-image: url('assets/banner.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 200px 40px 100px 40px;
+  position: relative;
+  margin-top: 80px;
+}
+.banner h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+.banner p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin-bottom: 20px;
+  color: #ccc;
+}
+.banner button {
+  background-color: #e50914;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.banner button:hover {
+  background-color: #b00610;
+}

@@ -48,33 +48,43 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ======= MOVIE CAROUSEL =======
-  const rows = document.querySelectorAll(".movie-row");
-  rows.forEach((row) => {
-    const container = row.querySelector(".movie-thumbnails");
-    if (!container) return;
-    const left = row.querySelector(".arrow-left");
-    const right = row.querySelector(".arrow-right");
+  function setupCarousel() {
+    const rows = document.querySelectorAll(".movie-row");
+    rows.forEach((row) => {
+      const container = row.querySelector(".movie-thumbnails");
+      if (!container) return;
+      const left = row.querySelector(".arrow-left");
+      const right = row.querySelector(".arrow-right");
 
-    // Clone thumbnails for seamless looping
-    const images = Array.from(container.children);
-    images.forEach((img) => {
-      container.appendChild(img.cloneNode(true));
+      // Clone thumbnails for seamless looping
+      const images = Array.from(container.children);
+      images.forEach((img) => {
+        container.appendChild(img.cloneNode(true));
+      });
+
+      const gap = parseInt(getComputedStyle(container).gap) || 15;
+      const scrollStep = images[0].offsetWidth + gap;
+
+      right?.addEventListener("click", () => {
+        if (container.scrollLeft >= container.scrollWidth / 2) {
+          container.scrollLeft = 0;
+        }
+        container.scrollBy({ left: scrollStep, behavior: "smooth" });
+      });
+
+      left?.addEventListener("click", () => {
+        if (container.scrollLeft <= 0) {
+          container.scrollLeft = container.scrollWidth / 2;
+        }
+        container.scrollBy({ left: -scrollStep, behavior: "smooth" });
+      });
     });
+  }
 
-    const scrollStep = images[0]?.offsetWidth + 15 || 200;
-
-    right?.addEventListener("click", () => {
-      if (container.scrollLeft >= container.scrollWidth / 2) {
-        container.scrollLeft = 0;
-      }
-      container.scrollBy({ left: scrollStep, behavior: "smooth" });
-    });
-
-    left?.addEventListener("click", () => {
-      if (container.scrollLeft <= 0) {
-        container.scrollLeft = container.scrollWidth / 2;
-      }
-      container.scrollBy({ left: -scrollStep, behavior: "smooth" });
-    });
-  });
+  // Ensure images are loaded before calculating widths
+  if (document.readyState === "complete") {
+    setupCarousel();
+  } else {
+    window.addEventListener("load", setupCarousel);
+  }
 });

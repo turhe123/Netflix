@@ -234,6 +234,37 @@ main {
 .movie-row {
   margin: 40px 0;
   padding: 0 40px;
+  position: relative;
+}
+
+.movie-row .arrow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  border: none;
+  width: 60px;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 2rem;
+  transition: background-color 0.2s;
+}
+
+.movie-row .arrow-left {
+  left: 0;
+}
+
+.movie-row .arrow-right {
+  right: 0;
+}
+
+body.light .movie-row .arrow {
+  background-color: rgba(255, 255, 255, 0.4);
+  color: #111;
 }
 
 .movie-row h2 {
